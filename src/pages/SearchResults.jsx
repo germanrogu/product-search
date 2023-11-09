@@ -36,7 +36,7 @@ export const SearchResults = () => {
                   {new Intl.NumberFormat("en-US", {
                     style: "currency",
                     currency: "USD",
-                  }).format(item.price.amount * 0.0029)}
+                  }).format(item.price.amount)}
                 </div>
                 <div className='item-title'>{item.title}</div>
                 <div className='item-condition'>{item.condition}</div>
