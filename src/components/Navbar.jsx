@@ -12,10 +12,7 @@ export const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (searchQuery) => {
-    console.log("Realizar búsqueda con:", searchQuery);
-
     dispatch(searchItemsRequest(searchQuery));
-
     navigate(`/items?search=${searchQuery}`);
   };
 
