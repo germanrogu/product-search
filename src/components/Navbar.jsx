@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Logo from "../assets/Logo_ML.png";
 import Search from "../assets/ic_Search.png";
 import "../styles/Navbar.scss";
 import { useDispatch } from "react-redux";
-import { searchItemsRequest } from "../store/actions";
+import { clearProductDetails, setSearchResults } from "../store/actions";
 
 export const Navbar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const initialSearchQuery = searchParams.get("search");
   const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery || "");
+  const navigate = useNavigate();
 
   const handleSearch = (searchQuery) => {
-    dispatch(searchItemsRequest(searchQuery));
     navigate(`/items?search=${searchQuery}`);
   };
 
@@ -29,11 +30,17 @@ export const Navbar = () => {
       handleSearch(searchQuery);
     }
   };
+
+  const handleCleanStore = () => {
+    setSearchQuery("");
+    dispatch(clearProductDetails());
+    dispatch(setSearchResults([]));
+  };
   return (
     <nav className='navbar'>
       <Link to='/'>
         <img
-          onClick={() => setSearchQuery("")}
+          onClick={handleCleanStore}
           className='logo'
           src={Logo}
           alt='Logo'
