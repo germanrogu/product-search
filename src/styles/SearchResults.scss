@@ -1,5 +1,6 @@
 .search-results {
   background-color: #eeeeee;
+  // height: 100vh;
   padding: 10px;
 }
 
@@ -15,6 +16,8 @@
 }
 
 .search-results-item {
+  text-decoration: none;
+  color: #000;
   display: flex;
   margin: 10px;
   border: 1px solid #ddd;
