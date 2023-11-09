@@ -39,7 +39,7 @@ export const ProductDetail = () => {
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: "USD",
-                }).format(product.item.price.amount * 0.0029)}{" "}
+                }).format(product.item.price.amount * 0.0029)}
               </p>
               <button className='buy-button'>Comprar</button>
             </div>
