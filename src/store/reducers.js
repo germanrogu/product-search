@@ -1,17 +1,19 @@
 import {
-  CLEAR_PRODUCT_DETAILS,
+  CLEAR_STORE,
   LOAD_PRODUCT_DETAILS_SUCCESS,
-  SET_SEARCH_RESULTS,
+  SEARCH_ITEMS_SUCCESS,
+  SET_LOADING,
 } from "./actions";
 
 const initialState = {
   searchResults: [],
   productDetails: null,
+  loading: false,
 };
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SEARCH_RESULTS:
+    case SEARCH_ITEMS_SUCCESS:
       return {
         ...state,
         searchResults: action.payload,
@@ -21,9 +23,15 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         productDetails: action.payload,
       };
-    case CLEAR_PRODUCT_DETAILS:
+    case SET_LOADING:
       return {
         ...state,
+        loading: action.payload,
+      };
+    case CLEAR_STORE:
+      return {
+        ...state,
+        searchResults: [],
         productDetails: null,
       };
     default:

@@ -4,7 +4,7 @@ import Logo from "../assets/Logo_ML.png";
 
 import "../styles/Navbar.scss";
 import { useDispatch } from "react-redux";
-import { clearProductDetails, setSearchResults } from "../store/actions";
+import { clearStore } from "../store/actions";
 import InputSearch from "./InputSearch";
 import ButtonSearch from "./ButtonSearch";
 import ImageResult from "./ImageResult";
@@ -37,8 +37,7 @@ export const Navbar = () => {
 
   const handleCleanStore = () => {
     setSearchQuery("");
-    dispatch(clearProductDetails());
-    dispatch(setSearchResults([]));
+    dispatch(clearStore());
   };
   return (
     <nav className='navbar'>

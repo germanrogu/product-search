@@ -9,6 +9,7 @@ export const SearchResults = () => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const results = useSelector((state) => state.search.searchResults);
+  const loading = useSelector((state) => state.search.loading);
   const searchQuery = searchParams.get("search");
 
   useEffect(() => {
@@ -26,10 +27,12 @@ export const SearchResults = () => {
   return (
     <div className='search-results'>
       <div className='products-container'>
-        {results.length !== 0 ? (
+        {loading ? (
+          <p>Cargando resultados...</p>
+        ) : results.length !== 0 ? (
           results.map((item) => <LinkToItem key={item.id} item={item} />)
         ) : (
-          <p>Cargando resultados...</p>
+          <p>No hay resultados</p>
         )}
       </div>
     </div>

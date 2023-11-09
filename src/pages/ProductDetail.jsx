@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "../styles/ProductDetail.scss";
-import {
-  clearProductDetails,
-  loadProductDetailsRequest,
-} from "../store/actions";
+import { clearStore, loadProductDetailsRequest } from "../store/actions";
 import ImageResult from "../components/ImageResult";
 import ProductInfo from "../components/ProductInfo";
 
@@ -13,14 +10,15 @@ export const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.search.productDetails);
+  const loading = useSelector((state) => state.search.loading);
 
   useEffect(() => {
     if (id) {
-      dispatch(clearProductDetails());
+      dispatch(clearStore());
       dispatch(loadProductDetailsRequest(id));
     }
     return () => {
-      dispatch(clearProductDetails());
+      dispatch(clearStore());
     };
   }, [dispatch, id]);
 
@@ -33,7 +31,9 @@ export const ProductDetail = () => {
   return (
     <div className='product-detail'>
       <div className='product-container'>
-        {product ? (
+        {loading ? (
+          <p>Cargando detalles del producto...</p>
+        ) : product ? (
           <>
             <div className='product-image'>
               <ImageResult
@@ -48,7 +48,7 @@ export const ProductDetail = () => {
             </div>
           </>
         ) : (
-          <p>Cargando detalles del producto...</p>
+          <p>No se encontraron detalles del producto.</p>
         )}
       </div>
     </div>
