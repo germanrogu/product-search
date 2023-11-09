@@ -6,6 +6,8 @@ import {
   clearProductDetails,
   loadProductDetailsRequest,
 } from "../store/actions";
+import ImageResult from "../components/ImageResult";
+import ProductInfo from "../components/ProductInfo";
 
 export const ProductDetail = () => {
   const { id } = useParams();
@@ -22,27 +24,24 @@ export const ProductDetail = () => {
     };
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (product) {
+      document.title = product.item.title;
+    }
+  }, [product]);
+
   return (
     <div className='product-detail'>
       <div className='product-container'>
         {product ? (
           <>
             <div className='product-image'>
-              <img src={product.item.picture} alt={product.item.title} />
+              <ImageResult
+                src={product.item.picture}
+                alt={product.item.title}
+              />
             </div>
-            <div className='product-details'>
-              <p className='sold-quantity'>
-                Sold Quantity: {product.item.sold_quantity}
-              </p>
-              <h1 className='title'>{product.item.title}</h1>
-              <p className='price'>
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(product.item.price.amount)}
-              </p>
-              <button className='buy-button'>Comprar</button>
-            </div>
+            <ProductInfo product={product} />
             <div className='product-description'>
               <h2 className='description-title'>Descripción del producto</h2>
               <p className='description'>{product.item.description}</p>

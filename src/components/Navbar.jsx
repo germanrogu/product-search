@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Logo from "../assets/Logo_ML.png";
-import Search from "../assets/ic_Search.png";
+
 import "../styles/Navbar.scss";
 import { useDispatch } from "react-redux";
 import { clearProductDetails, setSearchResults } from "../store/actions";
+import InputSearch from "./InputSearch";
+import ButtonSearch from "./ButtonSearch";
+import ImageResult from "./ImageResult";
 
 export const Navbar = () => {
   const [searchParams] = useSearchParams();
@@ -12,6 +15,7 @@ export const Navbar = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery || "");
   const navigate = useNavigate();
+  document.title = "Home";
 
   const handleSearch = (searchQuery) => {
     navigate(`/items?search=${searchQuery}`);
@@ -39,28 +43,20 @@ export const Navbar = () => {
   return (
     <nav className='navbar'>
       <Link to='/'>
-        <img
+        <ImageResult
           onClick={handleCleanStore}
           className='logo'
           src={Logo}
-          alt='Logo'
+          alt={"Logo"}
         />
       </Link>
       <div className='search-box'>
-        <input
-          type='text'
-          placeholder='Nunca dejes de buscar'
-          className='search-input'
+        <InputSearch
           value={searchQuery}
           onChange={handleSearchInputChange}
           onKeyDown={handleEnterKeyPress}
         />
-        <img
-          src={Search}
-          alt='Icono de Búsqueda'
-          className='search-icon'
-          onClick={handleSearchButtonClick}
-        />
+        <ButtonSearch onClick={handleSearchButtonClick} />
       </div>
     </nav>
   );

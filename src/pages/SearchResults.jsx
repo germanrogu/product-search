@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "../styles/SearchResults.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { searchItemsRequest } from "../store/actions";
+import LinkToItem from "../components/LinkToItem";
 
 export const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -16,33 +17,17 @@ export const SearchResults = () => {
     }
   }, [dispatch, searchQuery]);
 
+  useEffect(() => {
+    if (searchQuery) {
+      document.title = searchQuery;
+    }
+  }, [searchQuery]);
+
   return (
     <div className='search-results'>
       <div className='products-container'>
         {results.length !== 0 ? (
-          results.map((item) => (
-            <Link
-              className='search-results-item'
-              key={item.id}
-              to={`/items/${item.id}`}
-            >
-              <img
-                src={item.picture}
-                alt={item.title}
-                className='item-picture'
-              />
-              <div className='item-details'>
-                <div className='item-price'>
-                  {new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }).format(item.price.amount)}
-                </div>
-                <div className='item-title'>{item.title}</div>
-                <div className='item-condition'>{item.condition}</div>
-              </div>
-            </Link>
-          ))
+          results.map((item) => <LinkToItem key={item.id} item={item} />)
         ) : (
           <p>Cargando resultados...</p>
         )}
