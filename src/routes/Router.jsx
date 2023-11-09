@@ -16,9 +16,8 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='items' element={<SearchResults />}>
-          <Route path=':id' element={<ProductDetail />} />
-        </Route>
+        <Route path='items' element={<SearchResults />} />
+        <Route path='items/:id' element={<ProductDetail />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
