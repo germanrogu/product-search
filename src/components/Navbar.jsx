@@ -15,7 +15,6 @@ export const Navbar = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery || "");
   const navigate = useNavigate();
-  document.title = "Home";
 
   const handleSearch = (searchQuery) => {
     navigate(`/items?search=${searchQuery}`);

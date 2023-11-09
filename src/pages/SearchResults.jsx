@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { searchItemsRequest } from "../store/actions";
 import LinkToItem from "../components/LinkToItem";
+import { capitalizeFirstLetter } from "../utils/Capitalize";
 
 export const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -20,7 +21,7 @@ export const SearchResults = () => {
 
   useEffect(() => {
     if (searchQuery) {
-      document.title = searchQuery;
+      document.title = capitalizeFirstLetter(searchQuery) + " | Product Search";
     }
   }, [searchQuery]);
 

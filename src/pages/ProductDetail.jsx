@@ -24,7 +24,7 @@ export const ProductDetail = () => {
 
   useEffect(() => {
     if (product) {
-      document.title = product.item.title;
+      document.title = product.item.title + " | Product Search";
     }
   }, [product]);
 
