@@ -10,3 +10,12 @@ export const searchItems = async (query) => {
     throw error;
   }
 };
+
+export const getProductDetails = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
