@@ -31,16 +31,21 @@ export const ProductDetail = () => {
               <img src={product.item.picture} alt={product.item.title} />
             </div>
             <div className='product-details'>
-              <p>Sold Quantity: {product.item.sold_quantity}</p>
-              <h1>{product.item.title}</h1>
-              <p>
-                {product.item.price.amount} {product.item.price.currency}
+              <p className='sold-quantity'>
+                Sold Quantity: {product.item.sold_quantity}
+              </p>
+              <h1 className='title'>{product.item.title}</h1>
+              <p className='price'>
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(product.item.price.amount * 0.0029)}{" "}
               </p>
               <button className='buy-button'>Comprar</button>
             </div>
             <div className='product-description'>
-              <h2>Descripcion del producto</h2>
-              <p>{product.item.description}</p>
+              <h2 className='description-title'>Descripción del producto</h2>
+              <p className='description'>{product.item.description}</p>
             </div>
           </>
         ) : (

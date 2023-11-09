@@ -1,4 +1,3 @@
-
 .product-detail {
   background-color: #eeeeee;
   padding: 10px;
@@ -13,6 +12,8 @@
       height: auto;
     }
   }
+
+
 
   .product-details {
     flex: 1;
@@ -30,30 +31,44 @@
       margin: 5px 0;
     }
 
-    h2 {
-      font-size: 20px;
-      font-weight: bold;
+    .price{
+      font-size: 46px;
     }
 
     .buy-button {
-      background-color: #007bff;
+      background-color: #3483FA;
       color: #fff;
       padding: 10px 20px;
       border: none;
       font-size: 16px;
+      border-radius: 4px;
       cursor: pointer;
       margin-top: 10px;
     }
   }
+
+  .product-container {
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 4px;
+    width: 80%;
+    margin: auto;
+  }
+  
+
+  .product-description{
+    .description-title{
+      font-size: 28px;
+    }
+    .description{
+      font-size: 16px;
+    }
+
+  }
+
+
 }
 
-.product-container{
-  background-color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
-  border-radius: 4px;
-  width: 80%;
-  margin: auto;
-}
