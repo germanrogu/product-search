@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/SearchResults.scss";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useSearchParams } from "react-router-dom";
+import { searchItemsRequest } from "../store/actions";
 
 export const SearchResults = () => {
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
   const results = useSelector((state) => state.search.searchResults);
+  const searchQuery = searchParams.get("search");
+
+  useEffect(() => {
+    if (searchQuery) {
+      dispatch(searchItemsRequest(searchQuery));
+    }
+  }, [dispatch, searchQuery]);
 
   return (
     <div className='search-results'>
